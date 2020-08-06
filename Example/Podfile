@@ -1,0 +1,72 @@
+source ''
+
+platform :ios, '10.0'
+
+install! 'cocoapods', :deterministic_uuids => false
+
+inhibit_all_warnings!
+#use_frameworks!
+
+target 'AlbumExample' do
+  # use_frameworks!
+  pod 'Album', path: '../'
+
+  target 'AlbumExampleTests' do
+    inherit! :search_paths
+  end
+end
+
+#def awConfigBuildMacros(config, value, key='GCC_PREPROCESSOR_DEFINITIONS')
+#    config.build_settings[key] << ' '
+#    config.build_settings[key] << value
+#
+#    # 这里主要是为了去重复
+#    if config.build_settings[key].is_a? String
+#      config.build_settings[key] = config.build_settings[key].split(' ').uniq.join(' ').rstrip.lst#rip
+#    elsif config.build_settings[key].is_a? Array
+#      config.build_settings[key] = config.build_settings[key].uniq.join(' ').rstrip.lstrip
+#    end
+#
+#end
+
+## 设置支持版本和编译时的宏
+#def awConfigTarget(target)
+#  target.build_configurations.each do |config|
+#    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] ='10.0'
+#    config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= '$(inherited)'
+#    if config.name == 'Debug'
+#      # debug
+#      awConfigBuildMacros config, 'AW_DEV=1'
+#    elsif config.name == 'Test'
+#    # Test from origin release
+#      awConfigBuildMacros config, 'TEST=1'
+#    elsif config.name == 'Adhoc'
+#      # adhoc form release
+#      awConfigBuildMacros config, 'ADHOC=1'
+#    elsif config.name == 'Pre'
+#      # pre-online form release
+#      awConfigBuildMacros config, 'PRE_ONLINE=1'
+#    elsif config.name == 'Release'
+#      # store from release
+#      awConfigBuildMacros config, 'DISTRIBUTION=1'
+#      awConfigBuildMacros config, 'APP_STORE=1'
+#    end
+#  end
+#end
+
+#post_install do |installer|
+#
+#  # 修改pods的
+#  installer.pods_project.targets.each do |target|
+#    awConfigTarget target
+#  end
+#
+#  # 修改工程的
+#  app_project = Xcodeproj::Project.open(Dir.glob("*.xcodeproj")[0])
+#  app_project.native_targets.each do |target|
+#    awConfigTarget target
+#  end
+#
+#  app_project.save
+#end
+
